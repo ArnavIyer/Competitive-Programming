@@ -19,4 +19,3 @@ int main() {
 	cout << n - bf(n) << endl;
 	return 0;
 }
-
