@@ -28,24 +28,17 @@ int main() {
 int getSum(vector<int> nums,int query) {
 	int i = 0;
 	int j = nums.size()-1;
-	int prev=nums[i]+nums[j];
-	if (nums[i] + nums[j] == query) return query;
-	else if (nums[i] + nums[j] < query) {
-		i++;
-	}
-	else j--;
-	int curr;
+	int best = nums[i] + nums[j];
 	while(i<j) {
-		curr = nums[i] + nums[j];
+		int curr = nums[i]+nums[j];
 		if (curr == query) return query;
-		if (abs(query-prev)<abs(query-curr)) return prev;
-		else {
-			if (curr < query) {
-				i++;
-			}
-			else j--;
+		if (abs(query-best)>abs(query-curr)) best = curr;
+		else if (curr < query) {
+			i++;
 		}
-		prev = curr;
+		else {
+			j--;
+		}
 	}
-	return curr;
+	return best;
 }
